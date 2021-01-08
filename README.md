@@ -252,38 +252,12 @@ XXXX/XX/XX XX:XX:XX Terraform apply |  109: resource "ibm_is_instance"
 
 If you experience this, please open a support case with IBM cloud so they can examine the Schematic supported Terraform resource providers.
 
-### Failure in the F5 Declarative Onboarding declaration
+### Failure in the F5 Automation and Orchestration declarations
 
-If your F5 BIG-IP™ Virtual Edition instance fails to reach the operational state, please login to the instance using the supplied IBM VPC Gen2 SSH key at:
-
-`ssh root@<Floating IP>`
-
-The reason for the failures can be found in the `/var/log/restnoded/restnoded.log` file. Search for the term '`Rolling back configuration`' and the cause for the declaration failure should immediately proceed the presence of the searched entry for '`Rolling back configuration`'.
-
-As an example, if the virtualization infrastructure performance is insufficent to appropriately run needed services within F5 TMOS™ you will see log entries like this:
+Troubleshoot and validate declarations by checking the:
 
 ```text
-[f5-declarative-onboarding: restWorker.js] tryUntil: got error {"code":503,"message":"tryUntil: max tries reached: Unable to process request /tm/sys/available. Service is unavailable.","name":"Error"}
+/var/log/restnoded/restnoded.log
 ```
 
-immediately proceeding the line which reads:
-
-```text
-[f5-declarative-onboarding: restWorker.js] Rolling back configuration
-```
-
-If you see that the system services did not become available, delete the workspace and start another. This type of error happens less then 1% of the time in IBM VPC Gen2 cloud, but has been noted. Creating another workspace from this template is the solution.
-
-As a second example, if there were issues licensing your F5 BIG-IP™ Virtual Edition instance because of Utility pool grant exhaustion or communications error with the BIG-IQ you would see messages like this:
-
-```text
-[f5-declarative-onboarding: restWorker.js] Error onboarding: Error waiting for license assignment
-```
-
-immediately proceeding the line which reads:
-
-```text
-[f5-declarative-onboarding: restWorker.js] Rolling back configuration
-```
-
-In this case too, keeping with the spirit of infrastructure as code, the solution would be to correct any issue with the license pool or networking, delete the workspace, and create another from this template.
+on the F5 BIG-IP™ Virtual Edition instance.
