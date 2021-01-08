@@ -17,6 +17,9 @@ tmos_dhcpv4_tmm:
   as3_declaration_url: ${as3_declaration_url}
   ts_enabled: true
   ts_declaration_url: ${ts_declaration_url}
+  post_onboard_enabled: true
+  post_onboard_commands:
+    - tmsh create route default gw ${default_route_gateway}
   phone_home_url: ${phone_home_url}
   phone_home_url_verify_tls: false
   phone_home_url_metadata:
