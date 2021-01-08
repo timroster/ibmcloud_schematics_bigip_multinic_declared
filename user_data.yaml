@@ -11,15 +11,18 @@ tmos_dhcpv4_tmm:
   configsync_interface: ${configsync_interface}
   default_route_interface: ${default_route_interface}
   dhcp_timeout: 120
+  dhcpv4_options:
+    mgmt:
+      host-name: ${hostname}
+      domain-name: ${domain}
+    '${default_route_interface}':
+      routers: ${default_route_gateway}
   do_enabled: true
   do_declaration_url: ${do_declaration_url}
   as3_enabled: true
   as3_declaration_url: ${as3_declaration_url}
   ts_enabled: true
   ts_declaration_url: ${ts_declaration_url}
-  post_onboard_enabled: true
-  post_onboard_commands:
-    - tmsh create route default gw ${default_route_gateway}
   phone_home_url: ${phone_home_url}
   phone_home_url_verify_tls: false
   phone_home_url_metadata:

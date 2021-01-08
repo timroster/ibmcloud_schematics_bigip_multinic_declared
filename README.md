@@ -149,6 +149,8 @@ Fill in the following values, based on the steps that you completed before you b
 | --- | ---------- | ------------- |
 | `region` | The VPC region that you want your BIG-IP™ to be provisioned. | us-south |
 | `instance_name` | The name of the VNF instance to be provisioned. | f5-ve-01 |
+| `hostname` | The hostname you want your BIG-IP™ to be provisioned. | f5-ve-01 |
+| `domain` | The domain you want your BIG-IP™ to be provisioned. | local |
 | `tmos_image_name` | The name of the VNF image  | bigip-14-1-2-6-0-0-2-all-1slot |
 | `instance_profile` | The profile of compute CPU and memory resources to be used when provisioning the BIG-IP™ instance. To list available profiles, run `ibmcloud is instance-profiles`. | cx2-4x8 |
 | `ssh_key_name` | The name of your public SSH key to be used. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |

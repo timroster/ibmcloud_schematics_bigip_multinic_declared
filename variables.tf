@@ -32,6 +32,24 @@ variable "instance_name" {
 }
 
 ##################################################################################
+# hostname - The hostname of the F5 BIG-IP instance
+##################################################################################
+variable "hostname" {
+  type        = string
+  default     = "f5-ve-01"
+  description = "The F5 BIG-IP hostname"
+}
+
+##################################################################################
+# domain - The domain name of the F5 BIG-IP instance
+##################################################################################
+variable "domain" {
+  type        = string
+  default     = "local"
+  description = "The F5 BIG-IP domain name"
+}
+
+##################################################################################
 # tmos_image_name - The name of VPC image to use for the F5 BIG-IP instnace
 ##################################################################################
 variable "tmos_image_name" {

@@ -88,6 +88,8 @@ data "template_file" "user_data" {
   vars = {
     tmos_admin_password     = local.admin_password
     configsync_interface    = "1.1"
+    hostname                = var.hostname
+    domain                  = var.domain
     default_route_interface = local.default_route_interface
     default_route_gateway   = local.default_gateway_ipv4_address
     do_declaration_url      = local.do_declaration_url
