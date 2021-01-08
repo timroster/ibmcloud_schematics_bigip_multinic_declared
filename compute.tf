@@ -71,12 +71,25 @@ locals {
   default_route_interface = var.default_route_interface == "" ? "1.${length(local.secondary_subnets)}" : var.default_route_interface
 }
 
+# discovery the 1st address on the default route subnet because IBM does not
+# supply the DHCPv4 routers option correctly on non-primary interfaces. This
+# is a bug in IBM they need to fix.
+data "ibm_is_subnet" "default_route_subnet" {
+  identifier = element(local.secondary_subnets, length(local.secondary_subnets) - 1)
+}
+# IBM does not tell you what the default gateway address for each subnet should
+# be, but by undocumented convention we will use the 1st host address in the subnet
+locals {
+  default_gateway_ipv4_address = cidrhost(data.ibm_is_subnet.default_route_interface.ipv4_cidr_block, 1)
+}
+
 data "template_file" "user_data" {
   template = local.template_file
   vars = {
     tmos_admin_password     = local.admin_password
     configsync_interface    = "1.1"
     default_route_interface = local.default_route_interface
+    default_route_gateway   = local.default_gateway_ipv4_address
     do_declaration_url      = local.do_declaration_url
     as3_declaration_url     = local.as3_declaration_url
     ts_declaration_url      = local.ts_declaration_url
@@ -147,6 +160,10 @@ output "profile_id" {
 locals {
   vs_interface_index = length(ibm_is_instance.f5_ve_instance.network_interfaces) - 1
   snat_interface_index = length(ibm_is_instance.f5_ve_instance.network_interfaces) < 3 ? 0 : 2
+}
+
+output "default_gateway" {
+  value = local.default_gateway_ipv4_address
 }
 
 output "virtual_service_next_hop_address" {
