@@ -80,7 +80,7 @@ data "ibm_is_subnet" "default_route_subnet" {
 # IBM does not tell you what the default gateway address for each subnet should
 # be, but by undocumented convention we will use the 1st host address in the subnet
 locals {
-  default_gateway_ipv4_address = cidrhost(data.ibm_is_subnet.default_route_interface.ipv4_cidr_block, 1)
+  default_gateway_ipv4_address = cidrhost(data.ibm_is_subnet.default_route_subnet.ipv4_cidr_block, 1)
 }
 
 data "template_file" "user_data" {
