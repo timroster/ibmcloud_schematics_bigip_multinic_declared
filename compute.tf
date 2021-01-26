@@ -23,33 +23,41 @@ data "ibm_is_image" "tmos_custom_image" {
 locals {
   # use the public image if the name is found
   public_image_map = {
-    bigip-14-1-2-6-0-0-2-all-1slot = {
-      "us-south" = "r006-f0a8cba9-1e9e-4771-87ba-20b7fd33b16a"
-      "us-east"  = "r014-eccb5c62-82d9-438c-b81e-716f3506700f"
-      "eu-gb"    = "r018-72ee97b8-ffeb-4427-bd2a-fc60e4d2b6b5"
-      "eu-de"    = "r010-cf56a548-d5ca-4833-b0a6-bde256140d93"
-      "jp-tok"   = "r022-44656c7d-427c-4e06-9253-3224cd1df827"
+    bigip-14-1-3-1-0-0-8-all-1slot = {
+      "us-south" = "r006-8720abba-4136-4779-a78e-e00e46f3b8f2"
+      "us-east"  = "r014-293302bd-7dfa-4e56-9f82-589eb3f24a85"
+      "eu-gb"    = "r018-a0410a8f-8241-440b-b96f-68a047f27831"
+      "eu-de"    = "r010-fbf0aba2-59bf-4e86-bdee-131381cf392d"
+      "jp-tok"   = "r022-22f5bfb3-e3ac-49b4-9cba-42f624891430"
+      "au-syd"   = "r026-0b8d935e-3e26-49c7-93d2-b60fbd932cf0"
+      "jp-osa"   = "r034-b068a948-8433-484f-9027-a304606c2dea"
     }
-    bigip-14-1-2-6-0-0-2-ltm-1slot = {
-      "us-south" = "r006-1ca34358-b1f0-44b1-bf9a-a8bd9837a672"
-      "us-east"  = "r014-3c86e0bf-1026-4400-91f6-b4256d972ed5"
-      "eu-gb"    = "r018-e717281f-5bd7-4e08-8d54-7b45ddfb12c7"
-      "eu-de"    = "r010-e8022107-fea9-471b-ba6c-8b8f8e130ab9"
-      "jp-tok"   = "r022-c7377896-c997-495a-88f7-033f827d6d8b"
+    bigip-14-1-3-1-0-0-8-ltm-1slot = {
+      "us-south" = "r006-32b0ee63-b829-4ebe-891e-57152cfbd837"
+      "us-east"  = "r014-798c713d-3bd1-44a9-a3e9-3803c989993f"
+      "eu-gb"    = "r018-fbfba240-2265-4876-a17a-eeb48e52b04e"
+      "eu-de"    = "r010-cd558f0a-ce44-44a3-940a-3c59fd5ab0e3"
+      "jp-tok"   = "r022-c9fc7522-374e-4022-b888-03791ad6dba2"
+      "au-syd"   = "r026-ba149ee1-6017-4424-b2ea-a13760b0ef08"
+      "jp-osa"   = "r034-db9d9da3-385f-465a-98d8-3ac450703137"
     }
-    bigip-15-1-0-4-0-0-6-all-1slot = {
-      "us-south" = "r006-654bca9e-8e4d-46c2-980b-c52fdd2237f4"
-      "us-east"  = "r014-d73926e1-3b82-413f-aecc-36710b59cf4b"
-      "eu-gb"    = "r018-e02a17f1-90bc-494b-ab66-4f3e03c08b7d"
-      "eu-de"    = "r010-3a06e044-56e8-4d45-a5c2-535a7b673a94"
-      "jp-tok"   = "r022-a65002eb-ad05-4d56-bcb8-2d3fa14f9834"
+    bigip-15-1-2-0-0-9-all-1slot = {
+      "us-south" = "r006-909f060a-151c-46dc-a7c9-8b590a8a557a"
+      "us-east"  = "r014-ca6bafde-c07f-4ec8-8a7a-612ac7780381"
+      "eu-gb"    = "r018-27ea929e-27e5-4f21-b399-86b229079945"
+      "eu-de"    = "r010-416fe422-531a-4ba0-90ad-a7411f76f0d2"
+      "jp-tok"   = "r022-6e54d1f4-140f-4e3a-b806-dda5a67f21dd"
+      "au-syd"   = "r026-11959b79-eee1-4516-bb46-ce6a99c1844d"
+      "jp-osa"   = "r034-39fb95e9-ca0a-46ec-b8b0-0c90f6bde6d0"
     }
-    bigip-15-1-0-4-0-0-6-ltm-1slot = {
-      "us-south" = "r006-c176a319-39e3-4f24-82a1-6dd4f2fa58dc"
-      "us-east"  = "r014-e2a4cc82-d935-4f3f-9042-21f64d18232c"
-      "eu-gb"    = "r018-859e47fb-40db-4d72-9da7-2de4fc78d64c"
-      "eu-de"    = "r010-cd996cda-53ce-4783-9e3a-03a18b9162ff"
-      "jp-tok"   = "r022-36b57097-deba-49c2-bffb-f37c61c8e713"
+    bigip-15-1-2-0-0-9-ltm-1slot = {
+      "us-south" = "r006-954b3370-9758-4927-b1d0-34bc03ab32d7"
+      "us-east"  = "r014-f42d01fe-7200-495c-8029-e4a883304af2"
+      "eu-gb"    = "r018-f60082e9-27d5-46ef-982d-5df5601ae535"
+      "eu-de"    = "r010-a640c1fa-0973-4885-bb8e-0e140a5d7c69"
+      "jp-tok"   = "r022-b1f55cd8-793a-4584-b51c-02d65d905e5e"
+      "au-syd"   = "r026-05ea0522-e099-4954-a91b-7067be45d4f9"
+      "jp-osa"   = "r034-1468eddc-2f24-4a43-bb9e-949ce2fa6615"
     }
   }
 }
