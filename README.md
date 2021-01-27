@@ -33,6 +33,21 @@ Learn more: https://www.ibm.com/cloud/support
 
 Public BIG-IP™ images available on IBM Cloud are:
 
+bigip-14-1-3-1-0-0-8-all-1slot
+bigip-14-1-3-1-0-0-8-ltm-1slot
+bigip-15-1-2-0-0-9-all-1slot
+bigip-15-1-2-0-0-9-ltm-1slot
+
+They are supported in the following regions:
+
+us-south
+us-east
+eu-de
+eu-gb
+jp-tok
+jp-osa
+au-syd
+
 **User variable:** ```tmos_image_name```
 
 **Values:**
