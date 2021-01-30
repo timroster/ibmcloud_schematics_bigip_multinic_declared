@@ -184,6 +184,9 @@ Fill in the following values, based on the steps that you completed before you b
 | `as3_declaration_url` | The URL to retrieve the f5-appsvcs-extension JSON declaration  | https://declarations.s3.us-east.cloud-object-storage.appdomain.cloud/as3_declaration.json |
 | `ts_declaration_url` | The URL to retrieve the f5-telemetry-streaming JSON declaration  | https://declarations.s3.us-east.cloud-object-storage.appdomain.cloud/ts_declaration.json |
 | `phone_home_url` | The URL for post onboarding web hook  | https://webhook.site/#!/8c71ed42-da62-48ea-a2a5-265caf420a3b |
+| `tgactive_url` | The URL to POST L3 device configurations when TMOS tgactive script is executed |
+| `tgstandby_url` | The URL to POST L3 device configurations when TMOS tgstandby script is executed |
+| `tgrefresh_url` | The URL to POST L3 device configurations when TMOS tgrefresh script is executed |
 | `app_id` | Application ID used for CI integration | a044b708-66c4-4f50-a5c8-2b54eff5f9b5 |
 
 ## Notes

@@ -174,3 +174,30 @@ variable "app_id" {
   default     = "undefined"
   description = "The terraform application id for phone_home_url_metadata"
 }
+
+##################################################################################
+# tgactive_url - The web hook URL to POST defined L3 addresses when tgactive is triggered
+##################################################################################
+variable "tgactive_url" {
+  type        = string
+  default     = ""
+  description = "The URL to POST L3 addresses when tgactive is triggered"
+}
+
+##################################################################################
+# tgstandby_url - The web hook URL to POST defined L3 addresses when tgstandby is triggered
+##################################################################################
+variable "tgstandby_url" {
+  type        = string
+  default     = ""
+  description = "The URL to POST L3 addresses when tgstandby is triggered"
+}
+
+##################################################################################
+# tgrefresh_url - The web hook URL to POST defined L3 addresses when tgrefresh is triggered
+##################################################################################
+variable "tgrefresh_url" {
+  type        = string
+  default     = ""
+  description = "The URL to POST L3 addresses when tgrefresh is triggered"
+}

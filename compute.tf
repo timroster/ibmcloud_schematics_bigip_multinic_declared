@@ -75,6 +75,9 @@ locals {
   as3_declaration_url     = var.as3_declaration_url == "" ? "null" : var.as3_declaration_url
   ts_declaration_url      = var.ts_declaration_url == "" ? "null" : var.ts_declaration_url
   phone_home_url          = var.phone_home_url == "" ? "null" : var.phone_home_url
+  tgactive_url            = var.tgactive_url == "" ? "null" : var.tgactive_url
+  tgstandby_url           = var.tgstandby_url == "" ? "null" : var.tgstandby_url
+  tgrefresh_url           = var.tgrefresh_url == "" ? "null" : var.tgrefresh_url
   # default_route_interface
   default_route_interface = var.default_route_interface == "" ? "1.${length(local.secondary_subnets)}" : var.default_route_interface
 }
@@ -104,6 +107,9 @@ data "template_file" "user_data" {
     as3_declaration_url     = local.as3_declaration_url
     ts_declaration_url      = local.ts_declaration_url
     phone_home_url          = local.phone_home_url
+    tgactive_url            = local.tgactive_url
+    tgstandby_url           = local.tgstandby_url
+    tgrefresh_url           = local.tgrefresh_url
     template_source         = var.template_source
     template_version        = var.template_version
     zone                    = data.ibm_is_subnet.f5_managment_subnet.zone
