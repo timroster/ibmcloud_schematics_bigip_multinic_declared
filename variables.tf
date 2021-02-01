@@ -1,4 +1,12 @@
 ##################################################################################
+# version - Terraform version required
+##################################################################################
+variable "TF_VERSION" {
+  default = "0.13"
+  description = "terraform version required for schematics"
+}
+
+##################################################################################
 # region - The VPC region to instatiate the F5 BIG-IP instance
 ##################################################################################
 variable "region" {
