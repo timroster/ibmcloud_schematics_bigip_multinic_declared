@@ -163,11 +163,11 @@ variable "phone_home_url" {
 # schematic template for phone_home_url_metadata
 ##################################################################################
 variable "template_source" {
-  default     = "jgruberf5/ibmcloud_schematics_bigip_multinic_declared"
+  default     = "f5devcentral/ibmcloud_schematics_bigip_multinic_declared"
   description = "The terraform template source for phone_home_url_metadata"
 }
 variable "template_version" {
-  default     = "20210106"
+  default     = "20210201"
   description = "The terraform template version for phone_home_url_metadata"
 }
 variable "app_id" {
