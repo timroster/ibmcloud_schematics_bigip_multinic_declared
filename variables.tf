@@ -54,7 +54,7 @@ variable "domain" {
 ##################################################################################
 variable "tmos_image_name" {
   type        = string
-  default     = "bigip-15-1-0-4-0-0-6-ltm-1slot"
+  default     = "bigip-15-1-2-0-0-9-all-1slot"
   description = "The image to be used when provisioning the F5 BIG-IP instance"
 }
 
