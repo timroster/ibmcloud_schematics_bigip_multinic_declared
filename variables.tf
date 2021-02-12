@@ -132,6 +132,15 @@ variable "external_subnet_id" {
 }
 
 ##################################################################################
+# bigip_external_floating_ip - Create a Floating IP for the external interface for BIG-IP
+##################################################################################
+variable "bigip_external_floating_ip" {
+  type        = bool
+  default     = false
+  description = "Create a Floating IP for the external interface for BIG-IP"
+}
+
+##################################################################################
 # default_route_interface - The F5 BIG-IP interface name for the default route
 ##################################################################################
 variable "default_route_interface" {

@@ -92,6 +92,7 @@ data "ibm_is_subnet" "default_route_subnet" {
 # be, but by undocumented convention we will use the 1st host address in the subnet
 locals {
   default_gateway_ipv4_address = cidrhost(data.ibm_is_subnet.default_route_subnet.ipv4_cidr_block, 1)
+  external_interface_index = length(local.secondary_subnets) - 1
 }
 
 data "template_file" "user_data" {
@@ -150,11 +151,19 @@ resource "ibm_is_instance" "f5_ve_instance" {
 }
 
 resource "ibm_is_floating_ip" "f5_management_floating_ip" {
-  name           = "f0-${random_uuid.namer.result}"
+  name           = "fmgmt-${random_uuid.namer.result}"
   resource_group = data.ibm_resource_group.group.id
   count          = var.bigip_management_floating_ip ? 1 : 0
   target         = ibm_is_instance.f5_ve_instance.primary_network_interface.0.id
 }
+
+resource "ibm_is_floating_ip" "f5_external_floating_ip" {
+  name           = "fext-${random_uuid.namer.result}"
+  resource_group = data.ibm_resource_group.group.id
+  count = local.external_floating_ip ? 1: 0
+  target = element(ibm_is_instance.f5_ve_instance.network_interfaces.*.id, local.external_interface_index)
+}
+
 output "resource_name" {
   value = ibm_is_instance.f5_ve_instance.name
 }
@@ -198,4 +207,8 @@ output "snat_next_hop_address" {
 
 output "f5_management_floating_ip" {
   value = var.bigip_management_floating_ip ? ibm_is_floating_ip.f5_management_floating_ip[0].address : ""
+}
+
+output "f5_external_floating_ip" {
+  value = local.external_floating_ip ? ibm_is_floating_ip.f5_external_floating_ip[0].address : ""
 }
