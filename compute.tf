@@ -71,13 +71,13 @@ locals {
   # user admin_password if supplied, else set a random password
   admin_password = var.tmos_admin_password == "" ? random_password.password.result : var.tmos_admin_password
   # set user_data YAML values or else set them to null for templating
-  do_declaration_url      = var.do_declaration_url == "" ? "null" : var.do_declaration_url
-  as3_declaration_url     = var.as3_declaration_url == "" ? "null" : var.as3_declaration_url
-  ts_declaration_url      = var.ts_declaration_url == "" ? "null" : var.ts_declaration_url
-  phone_home_url          = var.phone_home_url == "" ? "null" : var.phone_home_url
-  tgactive_url            = var.tgactive_url == "" ? "null" : var.tgactive_url
-  tgstandby_url           = var.tgstandby_url == "" ? "null" : var.tgstandby_url
-  tgrefresh_url           = var.tgrefresh_url == "" ? "null" : var.tgrefresh_url
+  do_declaration_url  = var.do_declaration_url == "" ? "null" : var.do_declaration_url
+  as3_declaration_url = var.as3_declaration_url == "" ? "null" : var.as3_declaration_url
+  ts_declaration_url  = var.ts_declaration_url == "" ? "null" : var.ts_declaration_url
+  phone_home_url      = var.phone_home_url == "" ? "null" : var.phone_home_url
+  tgactive_url        = var.tgactive_url == "" ? "null" : var.tgactive_url
+  tgstandby_url       = var.tgstandby_url == "" ? "null" : var.tgstandby_url
+  tgrefresh_url       = var.tgrefresh_url == "" ? "null" : var.tgrefresh_url
   # default_route_interface
   default_route_interface = var.default_route_interface == "" ? "1.${length(local.secondary_subnets)}" : var.default_route_interface
 }
@@ -120,10 +120,10 @@ data "template_file" "user_data" {
 
 # create compute instance
 resource "ibm_is_instance" "f5_ve_instance" {
-  name    = var.instance_name
+  name           = var.instance_name
   resource_group = data.ibm_resource_group.group.id
-  image   = local.image_id
-  profile = data.ibm_is_instance_profile.instance_profile.id
+  image          = local.image_id
+  profile        = data.ibm_is_instance_profile.instance_profile.id
   primary_network_interface {
     name            = "management"
     subnet          = data.ibm_is_subnet.f5_managment_subnet.id
@@ -149,6 +149,12 @@ resource "ibm_is_instance" "f5_ve_instance" {
   }
 }
 
+resource "ibm_is_floating_ip" "f5_management_floating_ip" {
+  name           = "f0-${random_uuid.namer.result}"
+  resource_group = data.ibm_resource_group.group.id
+  count          = var.bigip_management_floating_ip ? 1 : 0
+  target         = ibm_is_instance.f5_ve_instance.primary_network_interface.0.id
+}
 output "resource_name" {
   value = ibm_is_instance.f5_ve_instance.name
 }
@@ -174,7 +180,7 @@ output "profile_id" {
 }
 
 locals {
-  vs_interface_index = length(ibm_is_instance.f5_ve_instance.network_interfaces) - 1
+  vs_interface_index   = length(ibm_is_instance.f5_ve_instance.network_interfaces) - 1
   snat_interface_index = length(ibm_is_instance.f5_ve_instance.network_interfaces) < 3 ? 0 : 2
 }
 
@@ -188,4 +194,8 @@ output "virtual_service_next_hop_address" {
 
 output "snat_next_hop_address" {
   value = element(ibm_is_instance.f5_ve_instance.network_interfaces, local.snat_interface_index).primary_ipv4_address
+}
+
+output "f5_management_floating_ip" {
+  value = var.bigip_management_floating_ip ? ibm_is_floating_ip.f5_management_floating_ip[0].address : ""
 }

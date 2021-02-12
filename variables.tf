@@ -95,6 +95,16 @@ variable "management_subnet_id" {
 }
 
 ##################################################################################
+# bigip_management_floating_ip - Create a Floating IP for the management interface for BIG-IP
+##################################################################################
+variable "bigip_management_floating_ip" {
+  type        = bool
+  default     = false
+  description = "Create a Floating IP for the management interface for BIG-IP"
+}
+
+
+##################################################################################
 # cluster_subnet_id - The VPC subnet ID for the F5 BIG-IP configsync interface
 ##################################################################################
 variable "cluster_subnet_id" {

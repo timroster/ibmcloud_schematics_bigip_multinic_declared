@@ -4,3 +4,4 @@ ibmcloud_schematics_bigip_multinic_declared.zip
 terraform.tfstate
 terraform.tfstate.backup
 *.tfvars
+apikey.txt
