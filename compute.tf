@@ -171,8 +171,8 @@ data "template_file" "user_data" {
     tgrefresh_url           = local.tgrefresh_url
     template_source         = var.template_source
     template_version        = var.template_version
-    zone                    = data.ibm_is_subnet.f5_managment_subnet.zone
-    vpc                     = data.ibm_is_subnet.f5_managment_subnet.vpc
+    zone                    = data.ibm_is_subnet.f5_management_subnet.zone
+    vpc                     = data.ibm_is_subnet.f5_management_subnet.vpc
     app_id                  = var.app_id
   }
 }
@@ -185,7 +185,7 @@ resource "ibm_is_instance" "f5_ve_instance" {
   profile        = data.ibm_is_instance_profile.instance_profile.id
   primary_network_interface {
     name            = "management"
-    subnet          = data.ibm_is_subnet.f5_managment_subnet.id
+    subnet          = data.ibm_is_subnet.f5_management_subnet.id
     security_groups = [ibm_is_security_group.f5_open_sg.id]
   }
   dynamic "network_interfaces" {
@@ -197,8 +197,8 @@ resource "ibm_is_instance" "f5_ve_instance" {
       allow_ip_spoofing = true
     }
   }
-  vpc        = data.ibm_is_subnet.f5_managment_subnet.vpc
-  zone       = data.ibm_is_subnet.f5_managment_subnet.zone
+  vpc        = data.ibm_is_subnet.f5_management_subnet.vpc
+  zone       = data.ibm_is_subnet.f5_management_subnet.zone
   keys       = [data.ibm_is_ssh_key.ssh_pub_key.id]
   user_data  = data.template_file.user_data.rendered
   depends_on = [ibm_is_security_group_rule.f5_allow_outbound]
