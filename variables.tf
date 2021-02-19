@@ -161,6 +161,52 @@ variable "default_route_interface" {
 ##################################################################################
 # A&O Declaration Sources
 ##################################################################################
+variable "license_type" {
+  type        = string
+  default     = "none"
+  description = "How to license, may be 'none','byol','regkeypool','utilitypool'"
+}
+variable "byol_license_basekey" {
+  type        = string
+  default     = ""
+  description = "Bring your own license registration key for the F5 BIG-IP instance"
+}
+variable "license_host" {
+  type        = string
+  default     = ""
+  description = "BIGIQ IP or hostname to use for pool based licensing of the F5 BIG-IP instance"
+}
+variable "license_username" {
+  type        = string
+  default     = ""
+  description = "BIGIQ username to use for the pool based licensing of the F5 BIG-IP instance"
+}
+variable "license_password" {
+  type        = string
+  default     = ""
+  description = "BIGIQ password to use for the pool based licensing of the F5 BIG-IP instance"
+}
+variable "license_pool" {
+  type        = string
+  default     = ""
+  description = "BIGIQ license pool name of the pool based licensing of the F5 BIG-IP instance"
+}
+variable "license_sku_keyword_1" {
+  type        = string
+  default     = ""
+  description = "BIGIQ primary SKU for ELA utility licensing of the F5 BIG-IP instance"
+}
+variable "license_sku_keyword_2" {
+  type        = string
+  default     = ""
+  description = "BIGIQ secondary SKU for ELA utility licensing of the F5 BIG-IP instance"
+}
+variable "license_unit_of_measure" {
+  type        = string
+  default     = "hourly"
+  description = "BIGIQ utility pool unit of measurement"
+}
+
 variable "do_declaration_url" {
   type        = string
   default     = "none"
