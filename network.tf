@@ -2,6 +2,10 @@ data "ibm_is_subnet" "f5_management_subnet" {
   identifier = var.management_subnet_id
 }
 
+data "ibm_is_subnet" "f5_external_subnet" {
+  identifier = var.external_subnet_id
+}
+
 locals {
   secondary_subnets = compact(list(var.cluster_subnet_id, var.internal_subnet_id, var.external_subnet_id))
   external_floating_ip = var.external_subnet_id == "" ? false : var.bigip_external_floating_ip
