@@ -33,10 +33,12 @@ Learn more: https://www.ibm.com/cloud/support
 
 Public BIG-IP™ images available on IBM Cloud are:
 
-- bigip-14-1-3-1-0-0-8-all-1slot
-- bigip-14-1-3-1-0-0-8-ltm-1slot
-- bigip-15-1-2-0-0-9-all-1slot
-- bigip-15-1-2-0-0-9-ltm-1slot
+- f5-bigip-14-1-4-0-0-11-ltm-1slot-1
+- f5-bigip-14-1-4-0-0-11-all-1slot-1
+- f5-bigip-15-1-2-1-0-0-10-ltm-1slot-1
+- f5-bigip-15-1-2-1-0-0-10-all-1slot-1
+- f5-bigip-16-0-1-1-0-0-6-ltm-1slot-1
+- f5-bigip-16-0-1-1-0-0-6-all-1slot-1
 
 They are supported in the following regions:
 
@@ -89,7 +91,7 @@ Up to five network interfaces can be added to a IBM VPC instnace. If you define 
 **User Variables:**
 
 ```cluster_subnet_id```
-```intenral_subnet_id```
+```internal_subnet_id```
 ```external_subnet_id```
 ```do_declaration_url```
 ```as3_declaration_url```
@@ -109,7 +111,7 @@ The POST body will be JSON encoded and supply basic instance information:
 {
     "status": "SUCCESS",
     "product": "BIG-IP",
-    "version": "15.1.2.0.0.9",
+    "version": "15.1.2.1.0.0.10",
     "hostname": "f5-test-ve-01.local",
     "id": "27096838-e85f-11ea-ac1c-feff0b2c5217",
     "management": "10.243.0.7/24",
@@ -148,6 +150,7 @@ Before you can apply the template in IBM Cloud, complete the following steps.
 1.  Ensure that you have the following permissions in IBM Cloud Identity and Access Management:
     * `Manager` service access role for IBM Cloud Schematics
     * `Operator` platform role for VPC Infrastructure
+    * `IP Spoofing Operator` role for VPC Infrastructure Services
 2.  Ensure the following resources exist in your VPC Gen 2 environment
     - VPC
     - SSH Key
@@ -166,7 +169,7 @@ Fill in the following values, based on the steps that you completed before you b
 | `instance_name` | The name of the VNF instance to be provisioned. | f5-ve-01 |
 | `hostname` | The hostname you want your BIG-IP™ to be provisioned. | f5-ve-01 |
 | `domain` | The domain you want your BIG-IP™ to be provisioned. | local |
-| `tmos_image_name` | The name of the VNF image  | bigip-15-1-2-0-0-9-all-1slot |
+| `tmos_image_name` | The name of the VNF image  | f5-bigip-15-1-2-1-0-0-10-all-1slot-1 |
 | `instance_profile` | The profile of compute CPU and memory resources to be used when provisioning the BIG-IP™ instance. To list available profiles, run `ibmcloud is instance-profiles`. | cx2-4x8 |
 | `ssh_key_name` | The name of your public SSH key to be used. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |
 | `management_subnet_id` | The ID of the management subnet where the instance will be deployed. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
