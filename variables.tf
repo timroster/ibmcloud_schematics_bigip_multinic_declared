@@ -14,12 +14,12 @@ variable "region" {
   default     = "us-south"
   description = "The VPC region to instatiate the F5 BIG-IP instance"
 }
-# Present for CLI testng
-#variable "api_key" {
-#  type        = string
-#  default     = ""
-#  description = "IBM Public Cloud API KEY"
-#}
+#Present for CLI testing
+variable "api_key" {
+  type        = string
+  default     = ""
+  description = "IBM Public Cloud API KEY"
+}
 
 ##################################################################################
 # resource_group - The IBM Cloud resource group to create the F5 BIG-IP instance
@@ -62,7 +62,7 @@ variable "domain" {
 ##################################################################################
 variable "tmos_image_name" {
   type        = string
-  default     = "bigip-15-1-2-0-0-9-all-1slot"
+  default     = "f5-bigip-15-1-2-1-0-0-10-all-1slot-1"
   description = "The image to be used when provisioning the F5 BIG-IP instance"
 }
 
