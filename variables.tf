@@ -209,17 +209,17 @@ variable "license_unit_of_measure" {
 
 variable "do_declaration_url" {
   type        = string
-  default     = "none"
+  default     = ""
   description = "URL to fetch the f5-declarative-onboarding declaration"
 }
 variable "as3_declaration_url" {
   type        = string
-  default     = "none"
+  default     = ""
   description = "URL to fetch the f5-appsvcs-extension declaration"
 }
 variable "ts_declaration_url" {
   type        = string
-  default     = "none"
+  default     = ""
   description = "URL to fetch the f5-telemetry-streaming declaration"
 }
 
