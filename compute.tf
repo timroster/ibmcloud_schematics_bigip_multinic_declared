@@ -31,6 +31,7 @@ locals {
       "jp-tok"   = "r022-cd95c41d-2568-48dc-8684-aa91b9884e15"
       "au-syd"   = "r026-c158b9d7-8f92-41b7-beb6-653ee680959e"
       "jp-osa"   = "r034-6f3e7aed-710c-43a0-b6a9-c27ed8684bc6"
+      "ca-tor"   = "r038-a81ab374-af2a-4c7e-a7fb-d2a2fa556883"
     }
     f5-bigip-14-1-4-0-0-11-ltm-1slot-1 = {
       "us-south" = "r006-92c72a34-ac1f-479c-a3f3-4770e7766515"
@@ -40,6 +41,7 @@ locals {
       "jp-tok"   = "r022-1e3035fd-fed0-4856-9354-a730c5186254"
       "au-syd"   = "r026-06383d2a-4e04-422e-923f-3d312d3c3e72"
       "jp-osa"   = "r034-de793a9d-4011-42e0-a337-faec861f341e"
+      "ca-tor"   = "r038-cb37066d-154e-43e0-839e-01cc4e6ce013"
     }
     f5-bigip-15-1-2-1-0-0-10-all-1slot-1 = {
       "us-south" = "r006-96eff507-273e-48af-8790-74c74cf4cebd"
@@ -49,6 +51,7 @@ locals {
       "jp-tok"   = "r022-16b8c452-3fa2-40b0-8ae9-8f1a3b1b9459"
       "au-syd"   = "r026-99c64581-ce8c-48a3-ae3a-7aba1e651344"
       "jp-osa"   = "r034-d8385b38-870f-453a-b33e-8b40ceec0450"
+      "ca-tor"   = "r038-ef27dfd1-1564-48ff-af2a-d9092dd4ffb9"
     }
     f5-bigip-15-1-2-1-0-0-10-ltm-1slot-1 = {
       "us-south" = "r006-17a5e435-cfd6-44b5-9c52-1eabe26445af"
@@ -58,6 +61,7 @@ locals {
       "jp-tok"   = "r022-76a7fcf7-df8d-452a-9e96-4c17ded591ae"
       "au-syd"   = "r026-6ae75968-955f-4b9b-9f2a-d5dcbccadd63"
       "jp-osa"   = "r034-7721a3b3-a5ec-4c7e-9420-c945ba56cbfe"
+      "ca-tor"   = "r038-9da83b4a-eaeb-47d1-90c4-81b02c856bed"
     }
     f5-bigip-16-0-1-1-0-0-6-ltm-1slot-1 = {
       "us-south" = "r006-bc5a723a-752c-4fdb-b6c9-a8fd3c587bd3"
@@ -67,6 +71,7 @@ locals {
       "jp-tok"   = "r022-ff687ace-0325-4dd7-81d7-eaf0e5a378a5"
       "au-syd"   = "r026-4102137d-6abf-40e9-9d77-69c6f4cc5cc2"
       "jp-osa"   = "r034-ab405ea1-68a4-437c-b180-f2834ab14b16"
+      "ca-tor"   = "r038-2d523ada-b257-4add-97fd-d084bc92ea42"
     }
     f5-bigip-16-0-1-1-0-0-6-all-1slot-1 = {
       "us-south" = "r006-fe9e266b-5f74-4809-a348-f779e70353cb"
@@ -76,6 +81,7 @@ locals {
       "jp-tok"   = "r022-16f09456-9409-487e-b7ec-34f72a7db826"
       "au-syd"   = "r026-4c50432b-28c5-41ef-8031-b3104c46de77"
       "jp-osa"   = "r034-a3450582-5dd2-475c-a423-c18e1141df36"
+      "ca-tor"   = "r038-c6ab2957-3937-4c63-a842-9c8aac9d502b"
     }   
   }
 }
