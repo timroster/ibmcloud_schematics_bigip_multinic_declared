@@ -49,6 +49,7 @@ They are supported in the following regions:
 - jp-tok
 - jp-osa
 - au-syd
+- ca-tor
 
 **User variable:** ```tmos_image_name```
 
