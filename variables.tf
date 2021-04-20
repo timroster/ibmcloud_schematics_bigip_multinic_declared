@@ -98,7 +98,7 @@ variable "tmos_admin_password" {
 ##################################################################################
 variable "management_subnet_id" {
   type        = string
-  default     = null
+  default     = ""
   description = "Required VPC Gen2 subnet ID for the F5 BIG-IP management network"
 }
 
