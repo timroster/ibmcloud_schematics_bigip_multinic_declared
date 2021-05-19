@@ -28,15 +28,8 @@ Learn more: https://www.ibm.com/cloud/support
 
 - Have access to [Gen 2 VPC](https://cloud.ibm.com/vpc-ext/).
 - The given VPC must have at least one subnet with one IP address unassigned (up to 5 are supported)
-- The BIG-IP™ image name can reference the name of a custom image in your region or the public TMOS images available on IBM cloud.
+- The BIG-IP™ image name is the name of a custom VPC image in your region. To import a public F5 BIG-IP image see: [BIG-IP public image importer](https://github.com/jgruberf5/ibmcloud_schematics_bigip_image_importer).
 - This template uses F5 Automation and Orchestration declaration URL downloads. This is a new feature in tmos-cloudinit. You must be using custom VPC images which are patched with the latest version of tmos-cloudinit modules.
-
-Public BIG-IP™ images available on IBM Cloud are:
-
-- bigip-14-1-3-1-0-0-8-all-1slot
-- bigip-14-1-3-1-0-0-8-ltm-1slot
-- bigip-15-1-2-0-0-9-all-1slot
-- bigip-15-1-2-0-0-9-ltm-1slot
 
 They are supported in the following regions:
 
