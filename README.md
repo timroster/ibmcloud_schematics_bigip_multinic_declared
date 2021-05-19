@@ -1,6 +1,6 @@
 # F5 Networks BIG-IP™ Virtual Edition Instance Creation
 
-This directory contains the Terraform module to create BIG-IP™ VPC Gen2 instances using catalog input from the user.
+This directory contains the Terraform module to create BIG-IP™ VPC Gen2 instances using variable input from the user.
 
 Use this template to create BIG-IP™ Virtual Edition instances using imported customer VPC images using Terraform or IBM Cloud Schematics.  Schematics uses Terraform as the infrastructure-as-code engine.  With this template, you can create and manage infrastructure as a single unit as follows. For more information about how to use this template, see the IBM Cloud [Schematics documentation](https://cloud.ibm.com/docs/schematics).
 
