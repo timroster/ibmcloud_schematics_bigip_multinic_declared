@@ -1,8 +1,8 @@
-# F5 Networks BIG-IP™ Virtual Edition Instance Creation using Catalog image
+# F5 Networks BIG-IP™ Virtual Edition Instance Creation
 
 This directory contains the Terraform module to create BIG-IP™ VPC Gen2 instances using catalog input from the user.
 
-Use this template to create BIG-IP™ Virtual Edition instances using catalog image from your IBM Cloud account in IBM Cloud [VPC Gen2](https://cloud.ibm.com/vpc-ext/overview) by using Terraform or IBM Cloud Schematics.  Schematics uses Terraform as the infrastructure-as-code engine.  With this template, you can create and manage infrastructure as a single unit as follows. For more information about how to use this template, see the IBM Cloud [Schematics documentation](https://cloud.ibm.com/docs/schematics).
+Use this template to create BIG-IP™ Virtual Edition instances using imported customer VPC images using Terraform or IBM Cloud Schematics.  Schematics uses Terraform as the infrastructure-as-code engine.  With this template, you can create and manage infrastructure as a single unit as follows. For more information about how to use this template, see the IBM Cloud [Schematics documentation](https://cloud.ibm.com/docs/schematics).
 
 This template requires that the F5 TMOS™ qcow2 images be patched including the IBM VPC Gen2 cloudinit config and the full complement of tmos-cloudinit modules. The template also requires the f5-declarative-onboarding AT extension version 1.16.0 or greater be included in the patched image.
 
@@ -202,68 +202,6 @@ https://<Management IP>/mgmt/shared/telemetry
 ```
 
 These endpoints provide declarative orchestration of multiple NFV functions including L4-L7 ADC funcationality, network firewalls, web application firewalls, and DNS services.
-
-## Troubleshooting Known Error States
-
-The following errors were discovered in exhaustive testing of this Schematics template.
-
-### User providing invalid image name
-
-F5 BIG-IP™ Virtual Edition images names can be specified to match either custom images within an account's VPCs or can use the images available as part of the IBM public cloud image catalog. The image ids for the public cloud images are enumerated in a map embedded within the template itself. If the image name provided can not be mapped to a VPC custom image name nor a public cloud image name embedded in the template, the following error will occuring in your plan or apply phase:
-
-```text
-XXXX/XX/XX XX:XX:XX Terraform plan | Error: Invalid index
-XXXX/XX/XX XX:XX:XX Terraform plan |
-XXXX/XX/XX XX:XX:XX Terraform plan |   on compute.tf line 69, in locals:
-XXXX/XX/XX XX:XX:XX Terraform plan |   69:   image_id = data.ibm_is_image.tmos_custom_image.id == null ? lookup(local.public_image_map[var.tmos_image_name], var.region) : data.ibm_is_image.tmos_custom_image.id
-XXXX/XX/XX XX:XX:XX Terraform plan |     |----------------
-XXXX/XX/XX XX:XX:XX Terraform plan |     | local.public_image_map is object with 4 attributes
-XXXX/XX/XX XX:XX:XX Terraform plan |     | var.tmos_image_name is "bigip-16-0-0-0-0-12-all-1slot-us-south"
-XXXX/XX/XX XX:XX:XX Terraform plan |
-XXXX/XX/XX XX:XX:XX Terraform plan | The given key does not identify an element in this collection value.
-XXXX/XX/XX XX:XX:XX Terraform plan |
-XXXX/XX/XX XX:XX:XX Terraform PLAN error: Terraform PLAN errorexit status 1
-XXXX/XX/XX XX:XX:XX Could not execute action
-```
-
-To remedy this error, provide a valid image name and re-plan or re-apply.
-
-### Failures within the Schematics service
-
-If the Schematics system can not appropriately construct the execution environment for terraform, a continous repeat of the following log entries can be found at the end of the log of any of the workspace phase logs:
-
-```text
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-XXXX/XX/XX XX:XX:XX  --- Ready to execute the command ---
-```
-
-If you experience this, please open a support case with IBM cloud so they can examine the Schematics error.
-
-### Failure in the IBM Terraform Providers running in the Schematics service
-
-This template uses only community and IBM authored Terraform resource providers. Both of which are supported under Schematics.
-
-*There are no F5 Terraform resource providers used by this template, thus nothing to report to F5 when Terraform resources fail. All Terraform resources used in this template are supported by IBM.*
-
-When Schematics experiences an error with the community or IBM authorized Terraform resource providers, the cause of the issue will be in the log entries of the failing workspace phase logs. As an example, the following log entry will be present when the `ibm_is_instance` provider experiences issues with the IBM VPC Gen2 instance APIs:
-
-```text
-XXXX/XX/XX XX:XX:XX Terraform apply | ibm_is_instance.f5_ve_instance: Creating...
-XXXX/XX/XX XX:XX:XX Terraform apply |
-XXXX/XX/XX XX:XX:XX Terraform apply | Error: internal server error
-XXXX/XX/XX XX:XX:XX Terraform apply |
-XXXX/XX/XX XX:XX:XX Terraform apply |   on compute.tf line 109, in resource "ibm_is_instance" "f5_ve_instance":
-XXXX/XX/XX XX:XX:XX Terraform apply |  109: resource "ibm_is_instance"
-```
-
-If you experience this, please open a support case with IBM cloud so they can examine the Schematic supported Terraform resource providers.
 
 ### Failure in the F5 Automation and Orchestration declarations
 
