@@ -2,7 +2,7 @@
 # version - Terraform version required
 ##################################################################################
 variable "TF_VERSION" {
-  default = "0.13"
+  default     = "0.13"
   description = "terraform version required for schematics"
 }
 
@@ -14,12 +14,6 @@ variable "region" {
   default     = "us-south"
   description = "The VPC region to instatiate the F5 BIG-IP instance"
 }
-# Present for CLI testng
-#variable "api_key" {
-#  type        = string
-#  default     = ""
-#  description = "IBM Public Cloud API KEY"
-#}
 
 ##################################################################################
 # resource_group - The IBM Cloud resource group to create the F5 BIG-IP instance
@@ -58,12 +52,34 @@ variable "domain" {
 }
 
 ##################################################################################
-# tmos_image_name - The name of VPC image to use for the F5 BIG-IP instnace
+# tmos_custom_image - The custom VPC image to use for the F5 BIG-IP instnace
+##################################################################################
+variable "tmos_custom_image" {
+  type        = string
+  default     = ""
+  description = "The custom VPC image to use for the F5 BIG-IP instance"
+}
+
+##################################################################################
+# tmos_image_name - The longest match image name to use from the F5 public VE image catalog
 ##################################################################################
 variable "tmos_image_name" {
   type        = string
-  default     = "bigip-15-1-2-0-0-9-all-1slot"
-  description = "The image to be used when provisioning the F5 BIG-IP instance"
+  default     = "bigip-15-1-3-0-0-11"
+  description = "The longest match image name to use from the F5 public VE image catalog"
+}
+
+##################################################################################
+# tmos_type - The tmos image type. Either ltm or all
+##################################################################################
+variable "tmos_type" {
+  type        = string
+  description = "The tmos image type. Either ltm or all"
+  default     = "all"
+  validation {
+    condition     = contains(["all", "ltm"], var.tmos_type)
+    error_message = "Allowed values for tmos_type are \"all\" or \"ltm\"."
+  }
 }
 
 ##################################################################################

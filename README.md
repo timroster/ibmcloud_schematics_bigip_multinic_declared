@@ -40,6 +40,7 @@ They are supported in the following regions:
 - jp-tok
 - jp-osa
 - au-syd
+- ca-tor
 
 **User variable:** ```tmos_image_name```
 
@@ -159,7 +160,8 @@ Fill in the following values, based on the steps that you completed before you b
 | `instance_name` | The name of the VNF instance to be provisioned. | f5-ve-01 |
 | `hostname` | The hostname you want your BIG-IP™ to be provisioned. | f5-ve-01 |
 | `domain` | The domain you want your BIG-IP™ to be provisioned. | local |
-| `tmos_image_name` | The name of the VNF image  | bigip-15-1-2-0-0-9-all-1slot |
+| `tmos_custom_image` | The custom image name for the VNF image. If you define a custom image name, it overrides the public image name.  |  |
+| `tmos_image_name` | The longest match for a public image for the VNF image  | bigip-15-1-3-0-0-11-all-1slot-071521001 |
 | `instance_profile` | The profile of compute CPU and memory resources to be used when provisioning the BIG-IP™ instance. To list available profiles, run `ibmcloud is instance-profiles`. | cx2-4x8 |
 | `ssh_key_name` | The name of your public SSH key to be used. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |
 | `management_subnet_id` | The ID of the management subnet where the instance will be deployed. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
