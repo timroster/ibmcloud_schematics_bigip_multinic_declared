@@ -7,7 +7,7 @@ import difflib
 
 ALLOWED_TMOS_TYPES = ['all', 'ltm']
 PUBLIC_REGIONS = ['us-south', 'us-east', 'eu-gb',
-                  'eu-de', 'jp-tok', 'jp-osa', 'au-syd', 'ca-tor']
+                  'eu-de', 'jp-tok', 'jp-osa', 'au-syd', 'ca-tor', 'br-sao']
 
 
 def get_public_images(region):
@@ -36,6 +36,23 @@ def longest_substr(type, catalog_image_name, version_prefix):
     return match.size
 
 
+def get_image(region, type, version):
+    image_catalog = get_public_images(region)
+    max_match = 0
+    image_url = None
+    image_name = None
+    image_id = None
+    for image in image_catalog[region]:
+        match_length = longest_substr(
+            type, image['image_name'], version)
+        if match_length > 0 and match_length >= max_match:
+            max_match = match_length
+            image_url = image['image_sql_url']
+            image_name = image['image_name']
+            image_id = image['image_id']
+    return (image_url, image_name, image_id)
+
+
 def main():
     jsondata = json.loads(sys.stdin.read())
     if 'type' not in jsondata:
@@ -61,19 +78,7 @@ def main():
         sys.stderr.write(
             'public f5 images are not supported in region: %s. Use a custom VPC image.' % region)
         sys.exit(1)
-    image_catalog = get_public_images(region)
-    max_match = 0
-    image_url = None
-    image_name = None
-    image_id = None
-    for image in image_catalog[region]:
-        match_length = longest_substr(
-            tmos_type, image['image_name'], tmos_version_match)
-        if match_length >= max_match:
-            max_match = match_length
-            image_url = image['image_sql_url']
-            image_name = image['image_name']
-            image_id = image['image_id']
+    (image_url, image_name, image_id) = get_image(region, tmos_type, tmos_version_match)
     if not image_url:
         sys.stderr.write(
             'No image in the public image catalog matched version %s' % tmos_version_match)
