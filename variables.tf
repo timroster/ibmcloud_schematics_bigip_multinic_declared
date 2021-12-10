@@ -290,3 +290,11 @@ variable "tgrefresh_url" {
   default     = ""
   description = "The URL to POST L3 addresses when tgrefresh is triggered"
 }
+##################################################################################
+# encryption_key_crn - The crn of the encryption key for the boot volume
+##################################################################################
+variable "encryption_key_crn" {
+  type        = string
+  default     = ""
+  description = "The crn of the encryption key"
+} 

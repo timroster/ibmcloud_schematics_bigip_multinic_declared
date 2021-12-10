@@ -146,6 +146,9 @@ resource "ibm_is_instance" "f5_ve_instance" {
       allow_ip_spoofing = true
     }
   }
+  boot_volume {
+    encryption = var.encryption_key_crn == "" ? null : var.encryption_key_crn 
+  }
   vpc        = data.ibm_is_subnet.f5_management_subnet.vpc
   zone       = data.ibm_is_subnet.f5_management_subnet.zone
   keys       = [data.ibm_is_ssh_key.ssh_pub_key.id]
