@@ -41,6 +41,7 @@ They are supported in the following regions:
 - jp-osa
 - au-syd
 - ca-tor
+- br-sao
 
 **User variable:** ```tmos_image_name```
 
@@ -184,6 +185,7 @@ Fill in the following values, based on the steps that you completed before you b
 | `tgstandby_url` | The URL to POST L3 device configurations when TMOS tgstandby script is executed |
 | `tgrefresh_url` | The URL to POST L3 device configurations when TMOS tgrefresh script is executed |
 | `app_id` | Application ID used for CI integration | a044b708-66c4-4f50-a5c8-2b54eff5f9b5 |
+| `encryption_key_crn` | The CRN of the encryption key used to encrypt the boot image |
 
 ## Notes
 
