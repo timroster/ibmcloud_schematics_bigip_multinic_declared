@@ -7,11 +7,11 @@ terraform {
   }
 }
 
-# Configure the IBM Provider
-provider "ibm" {
-  region = var.region
-}
+# # Configure the IBM Provider
+# provider "ibm" {
+#   region = var.region
+# }
 
-data "ibm_resource_group" "group" {
-  name = var.resource_group
-}
+# data "ibm_resource_group" "group" {
+#   name = var.resource_group
+# }
